@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Emocional - Sistema Aurora</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for themed typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-placeholder">AURORA</div>
+            <h1>Sistema de Registro Emocional</h1>
+        </header>
+
+        <main class="main-content">
+            <section class="form-section card">
+                <h2>Registra Tu Experiencia</h2>
+                <form id="emotionForm">
+                    <div class="form-group">
+                        <label for="userName">Nombre Completo:</label>
+                        <input type="text" id="userName" name="userName" placeholder="Tu nombre de agente..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nivel de Confort:</label>
+                        <div class="radio-group">
+                            <input type="radio" id="comfort" name="comfortLevel" value="Confort" required>
+                            <label for="comfort">Confort</label>
+                            <input type="radio" id="discomfort" name="comfortLevel" value="Discomfort">
+                            <label for="discomfort">Discomfort</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emotions">Emociones Principales (Plutchik):</label>
+                        <!-- Added size attribute to show multiple options like a list -->
+                        <select id="emotions" name="emotions" multiple size="8" required>
+                            <option value="alegria">Alegría</option>
+                            <option value="confianza">Confianza</option>
+                            <option value="miedo">Miedo</option>
+                            <option value="sorpresa">Sorpresa</option>
+                            <option value="tristeza">Tristeza</option>
+                            <option value="disgusto">Disgusto</option>
+                            <option value="ira">Ira</option>
+                            <option value="anticipacion">Anticipación</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="intensity">Intensidad Percibida:</label>
+                        <div class="slider-group">
+                             <input type="range" id="intensity" name="intensity" min="1" max="5" value="3" step="1" required>
+                             <span id="intensityValue">3</span>
+                        </div>
+                        <div class="slider-labels">
+                            <span>1 (Baja)</span>
+                            <span>5 (Alta)</span>
+                        </div>
+                    </div>
+
+                     <div class="form-group">
+                        <label>Etiquetas Semánticas:</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="label-abrumado" name="semanticLabels" value="Abrumado"><label for="label-abrumado">Abrumado</label>
+                            <input type="checkbox" id="label-ansioso" name="semanticLabels" value="Ansioso"><label for="label-ansioso">Ansioso</label>
+                            <input type="checkbox" id="label-calmado" name="semanticLabels" value="Calmado"><label for="label-calmado">Calmado</label>
+                            <input type="checkbox" id="label-energizado" name="semanticLabels" value="Energizado"><label for="label-energizado">Energizado</label>
+                            <input type="checkbox" id="label-frustrado" name="semanticLabels" value="Frustrado"><label for="label-frustrado">Frustrado</label>
+                            <input type="checkbox" id="label-esperanzado" name="semanticLabels" value="Esperanzado"><label for="label-esperanzado">Esperanzado</label>
+                            <input type="checkbox" id="label-tensos" name="semanticLabels" value="Tensos"><label for="label-tensos">Tensos</label>
+                            <input type="checkbox" id="label-relajados" name="semanticLabels" value="Relajados"><label for="label-relajados">Relajados</label>
+                            <input type="checkbox" id="label-confundido" name="semanticLabels" value="Confundido"><label for="label-confundido">Confundido</label>
+                            <input type="checkbox" id="label-optimista" name="semanticLabels" value="Optimista"><label for="label-optimista">Optimista</label>
+                            <!-- Add more labels as needed -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="triggerEvent">Evento Desencadenante (Describe la situación):</label>
+                        <textarea id="triggerEvent" name="triggerEvent" rows="4" placeholder="Qué sucedió antes de sentir esto..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="detectedEmotion">Análisis del Sistema (AI):</label>
+                        <!-- This field would be updated by AI in a full implementation -->
+                        <input type="text" id="detectedEmotion" name="detectedEmotion" value="Esperando datos de análisis..." readonly>
+                    </div>
+
+                     <button type="submit" class="btn-submit">Registrar Emoción</button>
+                </form>
+            </section>
+
+            <section class="bodymap-section card">
+                 <h2>Mapa Corporal de Sensaciones</h2>
+                 <p class="bodymap-instruction">Haz clic en las áreas de tu cuerpo afectadas.</p>
+                 <div class="bodymap-container">
+                     <div class="bodymap-image-container">
+                         <!-- Placeholder images - Replace with actual body silhouettes -->
+                         <img src="/body_prone.png" alt="Mapa Corporal Pronado" id="bodymap-prona" class="bodymap-img">
+                         <div class="markers-overlay" id="markers-prona"></div>
+                     </div>
+                     <div class="bodymap-image-container">
+                          <img src="/body_supine.png" alt="Mapa Corporal Supino" id="bodymap-supina" class="bodymap-img">
+                          <div class="markers-overlay" id="markers-supina"></div>
+                     </div>
+                 </div>
+                 <button type="button" class="btn-clear-markers">Limpiar Mapa Corporal</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

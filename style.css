@@ -1,0 +1,568 @@
+/* style.css */
+
+/* Basic Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Theme Colors (Tech Fantasy RPG / Cyberpunk inspired) */
+    --color-background: #1a1a2e; /* Deep Space Blue */
+    --color-surface: #2e2c4b; /* Nebula Purple */
+    --color-primary: #e94560; /* Cyber Red */
+    --color-secondary: #0f4c75; /* Tech Blue */
+    --color-tertiary: #3282b8; /* Plasma Blue */
+    --color-highlight: #16e0bd; /* Neon Green/Cyan */
+    --color-text-light: #e0e0e0; /* Star Silver */
+    --color-text-dark: #16213e; /* Dark Matter */
+    --color-success: #4CAF50;
+    --color-error: #f44336;
+
+    /* Typography */
+    --font-heading: 'Orbitron', sans-serif; /* Futuristic/Techy */
+    --font-body: 'Roboto', sans-serif;     /* Clean/Readable */
+
+    /* Spacing */
+    --spacing-unit: 8px;
+    --spacing-xs: calc(var(--spacing-unit) * 0.5); /* 4px */
+    --spacing-sm: var(--spacing-unit); /* 8px */
+    --spacing-md: calc(var(--spacing-unit) * 2); /* 16px */
+    --spacing-lg: calc(var(--spacing-unit) * 3); /* 24px */
+    --spacing-xl: calc(var(--spacing-unit) * 4); /* 32px */
+    --spacing-xxl: calc(var(--spacing-unit) * 6); /* 48px */
+
+
+    /* Border Radius (2xl inspired, ~32px) */
+    --border-radius-md: 16px;
+    --border-radius-lg: 32px; /* Approximation of 2xl */
+
+    /* Shadows */
+    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 8px 12px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 12px 20px rgba(0, 0, 0, 0.4);
+
+    /* Transitions */
+    --transition-speed: 0.3s;
+    --transition-ease: ease-in-out;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-text-light);
+    line-height: 1.6;
+    padding: var(--spacing-md);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; /* Removed vertical centering to allow scrolling on smaller screens */
+}
+
+.container {
+    display: grid;
+    width: 100%;
+    max-width: 1400px; /* Increased max width */
+    grid-template-areas:
+        "header"
+        "main";
+    grid-template-rows: auto 1fr; /* Header takes auto height, main takes remaining */
+    gap: var(--spacing-lg); /* Gap between header and main */
+}
+
+.header {
+    grid-area: header;
+    display: flex;
+    flex-direction: column; /* Stack logo/title on mobile */
+    align-items: center;
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--color-secondary);
+    text-align: center;
+}
+
+.logo-placeholder {
+    width: 60px; /* Larger logo */
+    height: 60px;
+    background-color: var(--color-primary); /* Use primary color */
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 1em;
+    color: var(--color-background); /* Dark text on accent */
+    flex-shrink: 0; /* Prevent shrinking */
+    box-shadow: var(--shadow-sm);
+}
+
+.header h1 {
+    font-family: var(--font-heading);
+    font-size: 1.8em;
+    color: var(--color-primary);
+    text-shadow: 0 0 5px rgba(var(--color-primary), 0.5); /* Subtle neon glow */
+}
+
+.main-content {
+    grid-area: main;
+    display: grid;
+    grid-template-areas:
+        "form"
+        "bodymap";
+    grid-template-columns: 1fr; /* Stacked layout by default */
+    gap: var(--spacing-lg);
+}
+
+.card {
+    background-color: var(--color-surface);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(var(--color-tertiary), 0.3); /* Subtle border */
+    transition: transform var(--transition-speed) var(--transition-ease), box-shadow var(--transition-speed) var(--transition-ease);
+}
+
+.card:hover {
+     transform: translateY(-5px);
+     box-shadow: var(--shadow-lg);
+}
+
+
+.form-section {
+    grid-area: form;
+}
+
+.bodymap-section {
+    grid-area: bodymap;
+    text-align: center; /* Center bodymap content */
+    display: flex; /* Use flexbox for internal layout */
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+h2 {
+    font-family: var(--font-heading);
+    color: var(--color-highlight); /* Use highlight color for section titles */
+    margin-bottom: var(--spacing-md);
+    font-size: 1.6em;
+    text-shadow: 0 0 3px rgba(var(--color-highlight), 0.6);
+}
+
+.bodymap-instruction {
+    font-size: 0.9em;
+    color: var(--color-text-light);
+    opacity: 0.8;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+label {
+    font-weight: bold;
+    color: var(--color-text-light);
+    font-size: 0.9em;
+    margin-bottom: var(--spacing-xs);
+}
+
+input[type="text"],
+input[type="range"],
+textarea,
+select {
+    padding: var(--spacing-sm);
+    background-color: var(--color-background);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--border-radius-md);
+    color: var(--color-text-light);
+    font-family: var(--font-body);
+    font-size: 1em;
+    transition: border-color var(--transition-speed) var(--transition-ease), box-shadow var(--transition-speed) var(--transition-ease);
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 10px rgba(var(--color-primary), 0.6);
+    background-color: rgba(var(--color-background), 0.8); /* Slightly lighter on focus */
+}
+
+input[type="range"] {
+    padding: 0; /* Remove padding from range input */
+    margin-top: var(--spacing-xs);
+    -webkit-appearance: none; /* Remove default styling */
+    appearance: none;
+    background: transparent; /* Hide default track */
+    cursor: pointer;
+    width: calc(100% - var(--spacing-md) - 30px); /* Adjust width to make space for value span */
+}
+
+.slider-group {
+     display: flex;
+     align-items: center;
+     gap: var(--spacing-sm);
+}
+
+.slider-labels {
+     display: flex;
+     justify-content: space-between;
+     font-size: 0.8em;
+     color: var(--color-text-light);
+     opacity: 0.7;
+     margin-top: -var(--spacing-sm); /* Pull up closer to slider */
+}
+
+/* Style for the track */
+input[type="range"]::-webkit-slider-track {
+    width: 100%;
+    height: 10px; /* Thicker track */
+    background: var(--color-secondary);
+    border-radius: 5px;
+}
+input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 10px; /* Thicker track */
+    background: var(--color-secondary);
+    border-radius: 5px;
+}
+
+/* Style for the thumb */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px; /* Larger thumb */
+    height: 24px;
+    background: var(--color-primary);
+    border: 4px solid var(--color-background); /* Thicker border */
+    border-radius: 50%;
+    margin-top: -8px; /* Center thumb vertically on track */
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: background var(--transition-speed) var(--transition-ease), border-color var(--transition-speed) var(--transition-ease);
+}
+input[type="range"]::-moz-range-thumb {
+    width: 24px; /* Larger thumb */
+    height: 24px;
+    background: var(--color-primary);
+    border: 4px solid var(--color-background); /* Thicker border */
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: background var(--transition-speed) var(--transition-ease), border-color var(--transition-speed) var(--transition-ease);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover,
+input[type="range"]::-moz-range-thumb:hover {
+    background: var(--color-highlight); /* Change color on hover */
+    border-color: var(--color-primary);
+}
+
+
+#intensityValue {
+    display: inline-block;
+    min-width: 20px; /* Reserve space */
+    text-align: center;
+    font-weight: bold;
+    color: var(--color-highlight); /* Use highlight color */
+    font-family: var(--font-heading);
+}
+
+
+textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+select[multiple] {
+     min-height: 180px; /* Ensure multiple select is visible */
+     padding: var(--spacing-sm);
+     border-radius: var(--border-radius-md);
+     background-color: var(--color-background);
+     border: 1px solid var(--color-secondary);
+     color: var(--color-text-light);
+     font-family: var(--font-body);
+}
+
+select option {
+    background-color: var(--color-background); /* Option background */
+    color: var(--color-text-light); /* Option text color */
+    padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+/* Style for selected options (browser dependent, hard to style consistently) */
+select option:checked {
+     background-color: var(--color-tertiary); /* Highlight selected */
+    color: var(--color-background); /* Dark text on selection */
+}
+
+
+.radio-group, .checkbox-group {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: var(--spacing-md);
+}
+
+.radio-group label, .checkbox-group label {
+     font-weight: normal; /* Labels next to inputs are not bold */
+     cursor: pointer;
+     display: inline-flex; /* Align checkbox/radio with text */
+     align-items: center;
+     gap: var(--spacing-xs); /* Space between input and text */
+     color: var(--color-text-light);
+}
+
+.radio-group input[type="radio"], .checkbox-group input[type="checkbox"] {
+    /* Hide default browser appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Custom styling */
+    width: 24px; /* Larger touch target */
+    height: 24px;
+    border: 2px solid var(--color-secondary);
+    border-radius: 6px; /* Slightly rounded corners for checkbox */
+    position: relative;
+    cursor: pointer;
+    transition: border-color var(--transition-speed) var(--transition-ease), background-color var(--transition-speed) var(--transition-ease);
+    outline: none; /* Remove default outline */
+}
+
+.radio-group input[type="radio"] {
+     border-radius: 50%; /* Circular for radio */
+}
+
+.radio-group input[type="radio"]:focus, .checkbox-group input[type="checkbox"]:focus {
+    box-shadow: 0 0 5px rgba(var(--color-highlight), 0.7); /* Focus highlight */
+}
+
+
+.radio-group input[type="radio"]:checked, .checkbox-group input[type="checkbox"]:checked {
+    border-color: var(--color-highlight);
+    background-color: var(--color-highlight); /* Fill with accent color */
+}
+
+/* Custom Checkmark/Radio Fill */
+.radio-group input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px; /* Larger inner dot */
+    height: 10px;
+    background: var(--color-background); /* Inner circle color */
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkbox-group input[type="checkbox"]:checked::after {
+    content: '\2713'; /* Checkmark symbol */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color-background); /* Checkmark color */
+    font-size: 16px; /* Larger checkmark */
+    font-weight: bold;
+}
+
+
+.btn-submit, .btn-clear-markers {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--color-primary);
+    color: var(--color-background); /* Dark text on accent */
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-family: var(--font-heading);
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) var(--transition-ease), transform 0.1s ease, box-shadow var(--transition-speed) var(--transition-ease);
+    box-shadow: var(--shadow-sm);
+    margin-top: var(--spacing-md); /* Add space above buttons */
+}
+
+.btn-clear-markers {
+    background-color: var(--color-secondary); /* Different color for clear */
+    color: var(--color-text-light);
+}
+
+
+.btn-submit:hover {
+    background-color: var(--color-highlight); /* Use highlight on hover */
+    box-shadow: var(--shadow-md);
+    color: var(--color-background);
+}
+.btn-clear-markers:hover {
+    background-color: #a03040; /* Darker red hint for clear */
+    box-shadow: var(--shadow-md);
+}
+
+.btn-submit:active, .btn-clear-markers:active {
+    transform: scale(0.98);
+    box-shadow: var(--shadow-sm);
+}
+
+
+input[readonly] {
+    background-color: var(--color-background); /* Dimmer background */
+    border-color: var(--color-secondary);
+    opacity: 0.8;
+    cursor: default;
+}
+
+/* Body Map Styling */
+.bodymap-container {
+    display: flex;
+    flex-direction: column; /* Stack images on mobile */
+    gap: var(--spacing-md);
+    justify-content: center;
+    align-items: center; /* Center the image containers */
+    flex-grow: 1; /* Allow container to grow */
+}
+
+.bodymap-image-container {
+    position: relative;
+    width: 100%; /* Take full width of its container */
+    max-width: 350px; /* Max width for images */
+    margin: 0 auto; /* Center the container */
+    border: 1px solid var(--color-secondary); /* Add border */
+    border-radius: var(--border-radius-md);
+    overflow: hidden; /* Ensure markers don't overflow rounded corners */
+    box-shadow: var(--shadow-sm);
+}
+
+.bodymap-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    /* border-radius: var(--border-radius-md); /* Already on container */
+    user-select: none; /* Prevent image dragging */
+    -webkit-user-drag: none; /* Prevent image dragging on Webkit */
+    cursor: crosshair; /* Indicate clickable area */
+}
+
+.markers-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allow clicks to pass through to the image below */
+    z-index: 5; /* Ensure markers are above the image */
+}
+
+.marker {
+    position: absolute;
+    width: 18px; /* Slightly larger marker */
+    height: 18px;
+    background-color: var(--color-primary);
+    border: 3px solid var(--color-background); /* Thicker border */
+    border-radius: 50%;
+    transform: translate(-50%, -50%); /* Center the marker on the click coordinates */
+    pointer-events: auto; /* Make markers clickable (e.g., to remove) */
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    z-index: 10; /* Ensure markers are above the overlay */
+}
+
+.marker:hover {
+     background-color: var(--color-highlight); /* Change color on hover */
+     transform: translate(-50%, -50%) scale(1.1); /* Slight scale up */
+}
+
+.marker:active {
+     transform: translate(-50%, -50%) scale(0.9); /* Scale down on click */
+}
+
+
+/* Responsiveness */
+@media (min-width: 768px) {
+    body {
+        padding: var(--spacing-lg);
+    }
+    .container {
+        gap: var(--spacing-xl);
+    }
+
+    .header {
+        flex-direction: row; /* Side-by-side logo and title */
+        justify-content: flex-start;
+        text-align: left;
+        padding-bottom: var(--spacing-lg);
+    }
+
+    .logo-placeholder {
+        margin-right: var(--spacing-md);
+        margin-bottom: 0;
+         width: 70px; /* Larger logo on desktop */
+        height: 70px;
+    }
+
+    .header h1 {
+        font-size: 2.2em;
+    }
+
+    .main-content {
+         grid-template-areas:
+            "form bodymap";
+        grid-template-columns: 1.5fr 1fr; /* Form takes more space than bodymap */
+        gap: var(--spacing-xl);
+    }
+
+     .bodymap-container {
+        flex-direction: row; /* Side-by-side on larger screens */
+        gap: var(--spacing-lg);
+        align-items: flex-start; /* Align tops of images */
+        justify-content: center; /* Center the pair */
+     }
+
+     .bodymap-image-container {
+        max-width: 300px; /* Control image size */
+     }
+     .bodymap-section {
+         justify-content: space-between; /* Distribute space vertically */
+     }
+}
+
+@media (min-width: 1024px) {
+     body {
+        padding: var(--spacing-xl);
+    }
+     .container {
+        gap: var(--spacing-xxl);
+    }
+
+    .header h1 {
+        font-size: 2.8em;
+    }
+
+    .main-content {
+        grid-template-columns: 2fr 1fr; /* Form takes even more space */
+        gap: var(--spacing-xxl);
+    }
+
+     .bodymap-image-container {
+        max-width: 350px; /* Larger max width */
+     }
+}
+
+/* Optional: Fade in/out transitions for potential dynamic content */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn var(--transition-speed) var(--transition-ease) forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
